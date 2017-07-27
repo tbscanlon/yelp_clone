@@ -28,4 +28,13 @@ RSpec.describe RestaurantsController, type: :controller do
       expect(Restaurant.find_by(name: "KFC")).to be
     end
   end
+
+  describe "GET /:id" do
+    let!(:kfc) { Restaurant.create(name: "KFC") }
+
+    it "responds with 200" do
+      get :show, params: { id: kfc.id }
+      expect(response).to have_http_status(200)
+    end
+  end
 end
