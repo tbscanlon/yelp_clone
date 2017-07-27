@@ -46,9 +46,9 @@ RSpec.describe RestaurantsController, type: :controller do
     end
   end
 
-  describe "POST /update" do
+  describe "PUT /update" do
     before do
-      post :update, params: { id: kfc.id, restaurant: { name: "Kentucky Fried Chicken", description: "Best chicken" } }
+      put :update, params: { id: kfc.id, restaurant: { name: "Kentucky Fried Chicken", description: "Best chicken" } }
     end
 
     it "responds with 200" do
@@ -57,6 +57,20 @@ RSpec.describe RestaurantsController, type: :controller do
 
     it "updates a restaurant entry" do
       expect(Restaurant.find_by(name: "Kentucky Fried Chicken")).to be
+    end
+  end
+
+  describe "DELETE /destroy" do
+    before do
+      delete :destroy, params: { id: 1 }
+    end
+
+    it "responds with 200" do
+      expect(response).to redirect_to(restaurants_url)
+    end
+
+    it "deletes the restaurant" do
+      expect(Restaurant.find_by(name: "KFC")).to_not be
     end
   end
 end

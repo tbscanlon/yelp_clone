@@ -2,6 +2,7 @@
   <% @restaurants.each do |r| %>
     <%= link_to r.name, restaurant_path(r) %>
     <%= link_to "Edit #{r.name}", edit_restaurant_path(r) %>
+    <%= link_to "Delete #{r.name}", restaurant_path(r), method: :delete %>
   <% end %>
 <% else %>
   <p>No restaurants yet</p>
