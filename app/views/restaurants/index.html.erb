@@ -3,6 +3,7 @@
     <%= link_to r.name, restaurant_path(r) %>
     <%= link_to "Edit #{r.name}", edit_restaurant_path(r) %>
     <%= link_to "Delete #{r.name}", restaurant_path(r), method: :delete %>
+    <%= link_to "Review #{r.name}", new_restaurant_review_path(r) %>
   <% end %>
 <% else %>
   <p>No restaurants yet</p>

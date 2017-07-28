@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe RestaurantsController, type: :controller do
-  let!(:kfc) { Restaurant.create(name: "KFC", description: "Worst chicken", id: 1) }
+  let!(:kfc) { Restaurant.create(name: "KFC", description: "Worst chicken") }
 
   describe "GET /" do
     it "responds with 200" do
@@ -32,7 +32,6 @@ RSpec.describe RestaurantsController, type: :controller do
   end
 
   describe "GET /:id" do
-
     it "responds with 200" do
       get :show, params: { id: kfc.id }
       expect(response).to have_http_status(200)
@@ -47,9 +46,8 @@ RSpec.describe RestaurantsController, type: :controller do
   end
 
   describe "PUT /update" do
-    before do
-      put :update, params: { id: kfc.id, restaurant: { name: "Kentucky Fried Chicken", description: "Best chicken" } }
-    end
+    before { put :update, params: { id: kfc.id, restaurant: { name: "Kentucky Fried Chicken",
+             description: "Best chicken" } } }
 
     it "responds with 200" do
       expect(response).to redirect_to(restaurants_url)
@@ -62,7 +60,7 @@ RSpec.describe RestaurantsController, type: :controller do
 
   describe "DELETE /destroy" do
     before do
-      delete :destroy, params: { id: 1 }
+      delete :destroy, params: { id: kfc.id }
     end
 
     it "responds with 200" do
