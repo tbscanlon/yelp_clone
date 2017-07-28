@@ -4,6 +4,20 @@
     <%= link_to "Edit #{r.name}", edit_restaurant_path(r) %>
     <%= link_to "Delete #{r.name}", restaurant_path(r), method: :delete %>
     <%= link_to "Review #{r.name}", new_restaurant_review_path(r) %>
+    <h2>Reviews</h2>
+    <% if @restaurant.reviews.any? %>
+      <% @restaurant.reviews.each do |r| %>
+        <p>
+          <%= review.thoughts %>
+        </p>
+
+        <p>
+          <%= review.rating %>
+        </p>
+      <% end %>
+    <% else %>
+      <p>No reviews yet</p>
+    <% end %>
   <% end %>
 <% else %>
   <p>No restaurants yet</p>
